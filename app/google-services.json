@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243233806503",
+    "project_id": "unibanco-dbad1",
+    "storage_bucket": "unibanco-dbad1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243233806503:android:a87b725238b1aa4754a382",
+        "android_client_info": {
+          "package_name": "com.utp.unibanco"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWxQ_oOSt1pGkCUGje-2iSQvK8uLbXbsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
