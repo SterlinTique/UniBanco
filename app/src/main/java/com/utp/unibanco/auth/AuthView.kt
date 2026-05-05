@@ -3,12 +3,14 @@ package com.utp.unibanco.auth
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -25,8 +27,16 @@ fun AuthView(
     viewModel: AuthViewModel = viewModel()
 ) {
 
-    val user = viewModel.user.value
+    val document = viewModel.document.value
     val password = viewModel.password.value
+
+    val loginState = viewModel.loginState.value
+
+    LaunchedEffect(loginState) {
+        if (loginState == true) {
+            navController.navigate("home")
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -37,20 +47,21 @@ fun AuthView(
     ) {
 
         Text(
-            text = "Login",
+            text = "Inicio de sesión",
             color = Color.White,
             fontSize = 30.sp,
             modifier = Modifier.padding(bottom = 30.dp)
         )
 
-        Text("Usuario", color = Color.Gray)
+        Text("Documento", color = Color.Gray)
         BasicTextField(
-            value = user,
+            value = document,
             onValueChange = { viewModel.onUserChange(it) },
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color(0xFF2A2928))
                 .padding(12.dp),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true
         )
 
@@ -72,15 +83,11 @@ fun AuthView(
 
         Button(
             onClick = {
-                // aqui tin ViewModel o lo que sea para validar el login
-                // o tan navigation a home directamente
-                if (viewModel.login()) {
-                    // navegación simple
-                    navController.navigate("home")
-                }
+                viewModel.login(document, password)
             },
+
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFFFA70E)
+                containerColor = Color(0xFF435BD5)
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -97,6 +104,14 @@ fun AuthView(
             modifier = Modifier
                 .padding(top = 10.dp)
         )
+
+        if (loginState == false) {
+            Text(
+                text = "Credenciales incorrectas",
+                color = Color.Red,
+                modifier = Modifier.padding(top = 10.dp)
+            )
+        }
     }
 }
 
