@@ -23,10 +23,10 @@ fun AppNavigation() {
         composable("home") {
             //HomeView(navController = navController)
         }
-        /*
+
         composable("register") {
-            RegisterView(navController = navController)
+            //RegisterView(navController = navController)
         }
-        */
+
     }
 }
