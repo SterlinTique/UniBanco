@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.res.stringResource
+import com.utp.unibanco.R
 
 @Composable
 fun AuthView(
@@ -89,14 +91,14 @@ fun AuthView(
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
-                text = "UniBanco",
+                text = stringResource(id = R.string.app_name),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
 
             Text(
-                text = "Bienvenido de vuelta",
+                text = stringResource(id = R.string.welcome_title),
                 color = Color.Gray,
                 fontSize = 14.sp
             )
@@ -105,7 +107,7 @@ fun AuthView(
 
             // Documento
             Text(
-                text = "Documento de identidad",
+                text = stringResource(id = R.string.label_document_number),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 13.sp,
                 color = Color.Black
@@ -138,7 +140,7 @@ fun AuthView(
 
                     if (document.isEmpty()) {
                         Text(
-                            text = "Ingresa tu documento",
+                            text = stringResource(id = R.string.inner_label_document_number),
                             color = Color.Gray
                         )
                     }
@@ -151,7 +153,7 @@ fun AuthView(
 
             // Contraseña
             Text(
-                text = "Contraseña",
+                text = stringResource(id = R.string.label_confirm_password),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 13.sp,
                 color = Color.Black
@@ -182,7 +184,7 @@ fun AuthView(
 
                     if (password.isEmpty()) {
                         Text(
-                            text = "Ingresa tu contraseña",
+                            text = stringResource(id = R.string.inner_label_password_number),
                             color = Color.Gray
                         )
                     }
@@ -212,13 +214,13 @@ fun AuthView(
                     )
 
                     Text(
-                        text = "Recordarme",
+                        text = stringResource(id = R.string.check_remember),
                         fontSize = 12.sp
                     )
                 }
 
                 Text(
-                    text = "¿Olvidaste tu contraseña?",
+                    text = stringResource(id = R.string.btn_forgot_password),
                     color = Color(0xFF1353E8),
                     fontSize = 12.sp
                 )
@@ -245,7 +247,7 @@ fun AuthView(
             ) {
 
                 Text(
-                    text = "Iniciar sesión",
+                    text = stringResource(id = R.string.btn_login),
                     color = Color.White,
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold
@@ -257,13 +259,13 @@ fun AuthView(
             Row {
 
                 Text(
-                    text = "¿No tienes una cuenta? ",
+                    text = stringResource(id = R.string.text_no_account),
                     color = Color.Gray,
                     fontSize = 13.sp
                 )
 
                 Text(
-                    text = "Regístrate aquí",
+                    text = stringResource(id = R.string.text_register),
                     color = Color(0xFF1353E8),
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold
@@ -283,7 +285,7 @@ fun AuthView(
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = "© 2026 UniBanco. Todos los derechos reservados.",
+                text = stringResource(id = R.string.copyright),
                 color = Color.Gray,
                 fontSize = 11.sp
             )

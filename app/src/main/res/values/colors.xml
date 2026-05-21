@@ -6,5 +6,16 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!--Home-->
+    <color name="navyBlue">#1A2642</color>
+    <color name="mintGreen">#00D9A3</color>
+    <color name="white">#FFFFFF</color>
+    <color name="incomeGreen">#00D9A3</color>
+    <color name="expenseRed">#FF4D6D</color>
+    <color name="backgroundGray">#F8F9FA</color>
+    <color name="lightGray">#ECECF0</color>
+    <color name="textGray">#717182</color>
+    <color name="gradientNavy">#2D3E5F</color>
+
 </resources>
