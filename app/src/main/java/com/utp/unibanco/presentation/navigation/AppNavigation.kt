@@ -8,7 +8,7 @@ import com.utp.unibanco.auth.AuthView
 import com.utp.unibanco.register.RegisterView
 
 @Composable
-fun AppNavigationn() {
+fun AppNavigation() {
 
     val navController = rememberNavController()
 
