@@ -57,13 +57,7 @@ fun AuthView(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(25.dp)
-                .align(Alignment.Center)
-                .background(
-                    Color.White,
-                    shape = RoundedCornerShape(20.dp)
-                )
-                .padding(25.dp),
-
+                .align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -74,7 +68,7 @@ fun AuthView(
                 modifier = Modifier
                     .size(60.dp)
                     .background(
-                        Color(0xFF1353E8),
+                        color = Color.Blue,
                         shape = RoundedCornerShape(15.dp)
                     ),
 
@@ -153,7 +147,7 @@ fun AuthView(
 
             // Contraseña
             Text(
-                text = stringResource(id = R.string.label_confirm_password),
+                text = stringResource(id = R.string.inner_label_password_number),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 13.sp,
                 color = Color.Black
@@ -293,7 +287,7 @@ fun AuthView(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, locale = "es")
 @Composable
 fun TestAuthView() {
 
