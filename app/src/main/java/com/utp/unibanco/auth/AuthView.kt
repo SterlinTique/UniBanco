@@ -2,6 +2,7 @@ package com.utp.unibanco.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -268,7 +269,10 @@ fun AuthView(
                     text = stringResource(id = R.string.text_register),
                     color = Color(0xFF1353E8),
                     fontSize = 13.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.clickable() {
+                        navController.navigate("register")
+                    }
                 )
             }
 

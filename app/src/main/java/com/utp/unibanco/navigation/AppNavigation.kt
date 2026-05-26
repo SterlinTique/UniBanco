@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.utp.unibanco.auth.AuthView
+import com.utp.unibanco.register.RegisterView
 
 @Composable
 fun AppNavigation() {
@@ -25,7 +26,7 @@ fun AppNavigation() {
         }
 
         composable("register") {
-            //RegisterView(navController = navController)
+            RegisterView(navController = navController)
         }
 
     }
