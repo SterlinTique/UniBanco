@@ -1,5 +1,8 @@
 package com.utp.unibanco.presentation.register
 
+import android.app.DatePickerDialog
+import java.util.Calendar
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,6 +15,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.mutableIntStateOf
@@ -44,9 +51,22 @@ fun RegisterView(
     var password by rememberSaveable { mutableStateOf("") }
     var confirmPassword by rememberSaveable { mutableStateOf("") }
 
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+
     var message by remember {
         mutableIntStateOf(0)
     }
+
+    val datePickerDialog = DatePickerDialog(
+        context,
+        { _, year, month, dayOfMonth ->
+            birthDate = "$dayOfMonth/${month + 1}/$year"
+        },
+        calendar.get(Calendar.YEAR),
+        calendar.get(Calendar.MONTH),
+        calendar.get(Calendar.DAY_OF_MONTH)
+    )
 
     Column(
         modifier = Modifier
@@ -85,27 +105,22 @@ fun RegisterView(
         // Documento
         OutlinedTextField(
             value = document,
-            onValueChange = {
-                document = it
-            },
-
-            label = {
-                Text(stringResource(R.string.label_document))
-            },
-
+            onValueChange = { document = it },
+            label = { Text(stringResource(R.string.label_document)) },
             modifier = Modifier.fillMaxWidth(),
-
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             ),
-
             singleLine = true,
-
             shape = RoundedCornerShape(14.dp),
-
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1353E8),
-                unfocusedBorderColor = Color.LightGray
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Gray,
+                cursorColor = Color(0xFF1353E8)
             )
         )
 
@@ -114,23 +129,19 @@ fun RegisterView(
         // Nombre
         OutlinedTextField(
             value = name,
-            onValueChange = {
-                name = it
-            },
-
-            label = {
-                Text(stringResource(R.string.label_name))
-            },
-
+            onValueChange = { name = it },
+            label = { Text(stringResource(R.string.label_name)) },
             modifier = Modifier.fillMaxWidth(),
-
             singleLine = true,
-
             shape = RoundedCornerShape(14.dp),
-
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1353E8),
-                unfocusedBorderColor = Color.LightGray
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Gray,
+                cursorColor = Color(0xFF1353E8)
             )
         )
 
@@ -139,27 +150,22 @@ fun RegisterView(
         // Correo
         OutlinedTextField(
             value = email,
-            onValueChange = {
-                email = it
-            },
-
-            label = {
-                Text(stringResource(R.string.label_email))
-            },
-
+            onValueChange = { email = it },
+            label = { Text(stringResource(R.string.label_email)) },
             modifier = Modifier.fillMaxWidth(),
-
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
             ),
-
             singleLine = true,
-
             shape = RoundedCornerShape(14.dp),
-
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1353E8),
-                unfocusedBorderColor = Color.LightGray
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Gray,
+                cursorColor = Color(0xFF1353E8)
             )
         )
 
@@ -168,27 +174,22 @@ fun RegisterView(
         // Teléfono
         OutlinedTextField(
             value = phone,
-            onValueChange = {
-                phone = it
-            },
-
-            label = {
-                Text(stringResource(R.string.label_phone))
-            },
-
+            onValueChange = { phone = it },
+            label = { Text(stringResource(R.string.label_phone)) },
             modifier = Modifier.fillMaxWidth(),
-
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Phone
             ),
-
             singleLine = true,
-
             shape = RoundedCornerShape(14.dp),
-
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1353E8),
-                unfocusedBorderColor = Color.LightGray
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Gray,
+                cursorColor = Color(0xFF1353E8)
             )
         )
 
@@ -197,31 +198,29 @@ fun RegisterView(
         // Fecha nacimiento
         OutlinedTextField(
             value = birthDate,
-            onValueChange = {
-                birthDate = it
-            },
-
-            label = {
-                Text(stringResource(R.string.label_birthdate))
-            },
-
-            placeholder = {
-                Text(stringResource(R.string.placeholder_birthdate))
-            },
-
+            onValueChange = { },
+            label = { Text(stringResource(R.string.label_birthdate)) },
+            placeholder = { Text(stringResource(R.string.placeholder_birthdate)) },
             modifier = Modifier.fillMaxWidth(),
-
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number
-            ),
-
+            readOnly = true, // evita que el usuario escriba
             singleLine = true,
-
             shape = RoundedCornerShape(14.dp),
-
+            trailingIcon = {
+                IconButton(onClick = { datePickerDialog.show() }) {
+                    Icon(
+                        imageVector = Icons.Default.DateRange,
+                        contentDescription = "Seleccionar fecha"
+                    )
+                }
+            },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1353E8),
-                unfocusedBorderColor = Color.LightGray
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Gray,
+                cursorColor = Color(0xFF1353E8)
             )
         )
 
@@ -230,25 +229,20 @@ fun RegisterView(
         // Contraseña
         OutlinedTextField(
             value = password,
-            onValueChange = {
-                password = it
-            },
-
-            label = {
-                Text(stringResource(R.string.label_password))
-            },
-
+            onValueChange = { password = it },
+            label = { Text(stringResource(R.string.label_password)) },
             visualTransformation = PasswordVisualTransformation(),
-
             modifier = Modifier.fillMaxWidth(),
-
             singleLine = true,
-
             shape = RoundedCornerShape(14.dp),
-
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1353E8),
-                unfocusedBorderColor = Color.LightGray
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Gray,
+                cursorColor = Color(0xFF1353E8)
             )
         )
 
@@ -257,25 +251,20 @@ fun RegisterView(
         // Confirmar contraseña
         OutlinedTextField(
             value = confirmPassword,
-            onValueChange = {
-                confirmPassword = it
-            },
-
-            label = {
-                Text(stringResource(R.string.label_confirm_password))
-            },
-
+            onValueChange = { confirmPassword = it },
+            label = { Text(stringResource(R.string.label_confirm_password)) },
             visualTransformation = PasswordVisualTransformation(),
-
             modifier = Modifier.fillMaxWidth(),
-
             singleLine = true,
-
             shape = RoundedCornerShape(14.dp),
-
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1353E8),
-                unfocusedBorderColor = Color.LightGray
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Gray,
+                cursorColor = Color(0xFF1353E8)
             )
         )
 
@@ -283,7 +272,6 @@ fun RegisterView(
 
         Button(
             onClick = {
-
                 viewModel.register(
                     document = document,
                     name = name,
@@ -294,11 +282,8 @@ fun RegisterView(
                     confirmPassword = confirmPassword
 
                 ) { success, response ->
-
                     message = response
-
                     if (success) {
-
                         navController.navigate("auth")
                     }
                 }
@@ -307,9 +292,7 @@ fun RegisterView(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(55.dp),
-
             shape = RoundedCornerShape(14.dp),
-
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF1353E8)
             )
@@ -326,48 +309,35 @@ fun RegisterView(
         Spacer(modifier = Modifier.height(20.dp))
 
         if (message != 0) {
-
             Text(
                 text = stringResource(message),
-
-                color = if (
-                    message == R.string.success_register
-                ) {
+                color = if (message == R.string.success_register) {
                     Color(0xFF2E7D32)
                 } else {
                     Color.Red
                 }
             )
-
             Spacer(modifier = Modifier.height(15.dp))
         }
 
         Row {
-
             Text(
                 text = stringResource(R.string.text_already_account),
                 color = Color.Gray,
                 fontSize = 13.sp
             )
-
             Text(
                 text = stringResource(R.string.text_login_here),
-
                 color = Color(0xFF1353E8),
-
                 fontSize = 13.sp,
-
                 fontWeight = FontWeight.Bold,
-
                 modifier = Modifier
                     .padding(start = 2.dp)
                     .clickable {
-
                         navController.navigate("auth")
                     }
             )
         }
-
         Spacer(modifier = Modifier.height(30.dp))
     }
 }

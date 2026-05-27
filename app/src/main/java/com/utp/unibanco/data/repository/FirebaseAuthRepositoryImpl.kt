@@ -1,9 +1,9 @@
 package com.utp.unibanco.data.repository
 
+import com.utp.unibanco.R
 import com.utp.unibanco.data.datasource.FirebaseUserDataSource
 import com.utp.unibanco.domain.model.User
 import com.utp.unibanco.domain.repository.AuthRepository
-import com.utp.unibanco.R // Importa los recursos
 
 class FirebaseAuthRepositoryImpl(
     private val dataSource: FirebaseUserDataSource = FirebaseUserDataSource()
