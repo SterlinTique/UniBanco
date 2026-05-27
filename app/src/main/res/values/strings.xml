@@ -1,33 +1,58 @@
 <resources>
-    <!--Login-->
-    <string name="app_name">UniBanco</string>
-    <string name="welcome_title">Bienvenido de vuelta</string>
-    <string name="label_document_number">Documento de identidad</string>
-    <string name="inner_label_document_number">Ingresa tu documento</string>
-    <string name="label_password">Contraseña</string>
-    <string name="inner_label_password_number">Ingresa tu contraseña</string>
-    <string name="check_remember">Recordarme</string>
-    <string name="btn_forgot_password">¿Olvidaste tu contraseña?</string>
-    <string name="btn_login">Iniciar sesión</string>
-    <string name="text_no_account">¿No tienes una cuenta? </string>
-    <string name="text_register">Regístrate aquí</string>
-    <string name="copyright">© 2026 UniBanco. Todos los derechos reservados.</string>
-    <string name="error_login_failed">Credenciales incorrectas</string>
 
-    <!--REGISTER-->
-    <string name="register_title">Crear Cuenta</string>
-    <string name="label_full_name">Nombre Completo</string>
-    <string name="label_confirm_password">Confirmar Contraseña</string>
+    <!-- APP -->
+    <string name="app_name">UniBanco</string>
+
+    <!-- LOGIN -->
+    <string name="login_title">UniBanco</string>
+    <string name="login_subtitle">Bienvenido de vuelta</string>
+
+    <string name="label_document">Documento de identidad</string>
+    <string name="placeholder_document">Ingresa tu documento</string>
+
+    <string name="label_password">Contraseña</string>
+    <string name="placeholder_password">Ingresa tu contraseña</string>
+
+    <string name="remember_me">Recordarme</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="copyright">© 2026 UniBanco. Todos los derechos reservados.</string>
+
+    <string name="text_no_account">¿No tienes una cuenta?</string>
+    <string name="text_register_here">Regístrate aquí</string>
+
+    <string name="error_login">Credenciales incorrectas</string>
+    <string name="success_login">Inicio de sesión correcto</string>
+
+
+    <!-- REGISTER -->
+    <string name="register_title">Crear cuenta</string>
+    <string name="register_subtitle">Completa tus datos</string>
+
+    <string name="label_name">Nombre completo</string>
+    <string name="label_email">Correo electrónico</string>
+    <string name="label_phone">Teléfono</string>
+    <string name="label_birthdate">Fecha de nacimiento</string>
+
+    <string name="placeholder_birthdate">DD/MM/AAAA</string>
+
+    <string name="label_confirm_password">Confirmar contraseña</string>
+
     <string name="btn_register">Registrarse</string>
-    <string name="text_already_have_account">¿Ya tienes una cuenta?</string>
-    <string name="text_login_here">Inicia sesión aquí</string>
-    <string name="register_loading_title">Registrando</string>
-    <string name="dialog_success_title">Éxito</string>
-    <string name="dialog_error_title">Error </string>
-    <string name="register_success_message">Cuenta creada correctamente</string>
+
+    <string name="text_already_account">¿Ya tienes una cuenta?</string>
+    <string name="text_login_here">Inicia sesión</string>
+
+    <!-- MENSAJES -->
+    <string name="success_register">Usuario registrado correctamente</string>
+    <string name="error_register">Error al registrar usuario</string>
+    <string name="error_empty_fields">Completa todos los campos</string>
+    <string name="error_password_match">Las contraseñas no coinciden</string>
+
+    <!-- ALERT DIALOGS -->
+    <string name="text_loading">Cargando...</string>
+    <string name="dialog_error_title">Error</string>
     <string name="btn_accept">Aceptar</string>
-    <string name="error_passwords_match">Las contraseñas no coinciden</string>
-    <string name="error_register_failed">Hubo un error al crear la cuenta</string>
-    <string name="text_loading">Cargando</string>
 
 </resources>

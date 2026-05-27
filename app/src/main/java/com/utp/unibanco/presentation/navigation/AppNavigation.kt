@@ -1,11 +1,11 @@
-package com.utp.unibanco.navigation
+package com.utp.unibanco.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.utp.unibanco.auth.AuthView
-import com.utp.unibanco.register.RegisterView
+import com.utp.unibanco.presentation.login.AuthView
+import com.utp.unibanco.presentation.register.RegisterView
 
 @Composable
 fun AppNavigation() {
