@@ -234,7 +234,7 @@ fun AuthView(
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = "© 2026 UniBanco. Todos los derechos reservados.",
+                text = stringResource(id = R.string.copyright),
                 color = Color.Gray,
                 fontSize = 11.sp
             )

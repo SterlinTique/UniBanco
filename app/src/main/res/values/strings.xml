@@ -17,6 +17,7 @@
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
 
     <string name="btn_login">Iniciar sesión</string>
+    <string name="copyright">© 2026 UniBanco. Todos los derechos reservados.</string>
 
     <string name="text_no_account">¿No tienes una cuenta?</string>
     <string name="text_register_here">Regístrate aquí</string>
