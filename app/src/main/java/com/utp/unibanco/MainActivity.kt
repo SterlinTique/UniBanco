@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.utp.unibanco.navigation.AppNavigation
+import com.utp.unibanco.presentation.navigation.AppNavigation
 import com.utp.unibanco.ui.theme.UniBancoTheme
 
 class MainActivity : ComponentActivity() {
