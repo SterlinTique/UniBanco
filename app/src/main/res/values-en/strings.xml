@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Login-->
+    <string name="app_name">UniBanco</string>
+    <string name="login_subtitle">Welcome back</string>
+    <string name="label_document">Identity document</string>
+    <string name="placeholder_document">Enter your document</string>
+    <string name="label_password">Password</string>
+    <string name="placeholder_password">Enter your password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="btn_login">Log in</string>
+    <string name="text_no_account">Don\'t have an account? </string>
+    <string name="text_register_here">Register here</string>
+    <string name="copyright">© 2026 UniBanco. All rights reserved.</string>
+    <string name="error_login">Incorrect credentials</string>
+</resources>
