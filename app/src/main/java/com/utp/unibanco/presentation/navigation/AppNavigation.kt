@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.utp.unibanco.presentation.home.HomeScreen
 import com.utp.unibanco.presentation.login.AuthView
 import com.utp.unibanco.presentation.register.RegisterView
 
@@ -22,7 +23,7 @@ fun AppNavigation() {
         }
 
         composable("home") {
-            //HomeView(navController = navController)
+            HomeScreen(navController = navController)
         }
 
         composable("register") {

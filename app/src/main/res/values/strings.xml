@@ -51,7 +51,7 @@
     <string name="error_password_match">Las contraseñas no coinciden</string>
 
     <!-- ALERT DIALOGS -->
-    <string name="text_loading">Cargando...</string>
+    <string name="text_loading">Cargando&#8230;</string>
     <string name="dialog_error_title">Error</string>
     <string name="btn_accept">Aceptar</string>
 

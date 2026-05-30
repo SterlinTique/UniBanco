@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- APP -->
+    <string name="app_name">UniBanco</string>
+
+    <!-- LOGIN -->
+    <string name="login_title">UniBanco</string>
+    <string name="login_subtitle">Welcome back</string>
+
+    <string name="label_document">Identity document</string>
+    <string name="placeholder_document">Enter your document</string>
+
+    <string name="label_password">Password</string>
+    <string name="placeholder_password">Enter your password</string>
+
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot your password?</string>
+
+    <string name="btn_login">Log in</string>
+    <string name="copyright">© 2026 UniBanco. All rights reserved.</string>
+
+    <string name="text_no_account">Don\'t have an account?</string>
+    <string name="text_register_here">Register here</string>
+
+    <string name="error_login">Incorrect credentials</string>
+    <string name="success_login">Login successful</string>
+
+
+    <!-- REGISTER -->
+    <string name="register_title">Create account</string>
+    <string name="register_subtitle">Complete your details</string>
+
+    <string name="label_name">Full name</string>
+    <string name="label_email">Email address</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_birthdate">Date of birth</string>
+
+    <string name="placeholder_birthdate">DD/MM/YYYY</string>
+
+    <string name="label_confirm_password">Confirm password</string>
+
+    <string name="btn_register">Register</string>
+
+    <string name="text_already_account">Already have an account?</string>
+    <string name="text_login_here">Log in</string>
+
+    <!-- MENSAJES -->
+    <string name="success_register">User registered successfully</string>
+    <string name="error_register">Error registering user</string>
+    <string name="error_empty_fields">Complete all fields</string>
+    <string name="error_password_match">Passwords do not match</string>
+
+    <!-- ALERT DIALOGS -->
+    <string name="text_loading">Loading&#8230;</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="btn_accept">Accept</string>
+
+</resources>
