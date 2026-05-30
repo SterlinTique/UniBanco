@@ -5,11 +5,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -24,6 +27,8 @@ import com.utp.unibanco.R
 import com.utp.unibanco.presentation.components.ShowLoadingAlertDialog
 import com.utp.unibanco.presentation.components.ShowMessageAlertDialog
 
+
+
 @Composable
 fun AuthView(
     viewModel: AuthViewModel = viewModel(),
@@ -37,6 +42,7 @@ fun AuthView(
     var showMessageAlert by remember { mutableStateOf(false) }
     var titleDialog by remember { mutableIntStateOf(0) }
     var messageDialog by remember { mutableIntStateOf(0) }
+    var showLanguageMenu by remember { mutableStateOf(false) }
 
     // Diálogo de carga
     if (showLoadingAlert) {
@@ -46,11 +52,13 @@ fun AuthView(
     // Diálogo de mensaje
     if (showMessageAlert) {
         ShowMessageAlertDialog(
-            onConfirmation = { showMessageAlert = false },
+            //showMessageAlert = false
+            onConfirmation = { },
             dialogTitle = titleDialog,
             dialogText = messageDialog
         )
     }
+
 
     Box(
         modifier = Modifier
@@ -65,6 +73,34 @@ fun AuthView(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(20.dp))
+
+            //Settings
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.TopEnd
+            ){
+                IconButton(onClick= { showLanguageMenu = true}) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = "change lenguaje",
+                        tint = colorResource(id= R.color.S_Blue)
+                    )
+                }
+
+                DropdownMenu(
+                    expanded = showLanguageMenu,
+                    onDismissRequest = { showLanguageMenu = false}
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("co Español") },
+                        onClick = { showLanguageMenu = false}
+                    )
+                    DropdownMenuItem(
+                        text = { Text("us English") },
+                        onClick = { showLanguageMenu = false},
+                    )
+                }
+            }
 
             // Logo
             Box(
@@ -88,7 +124,7 @@ fun AuthView(
 
             // Título UniBanco
             Text(
-                text = stringResource(R.string.login_title),
+                text = stringResource(R.string.app_name),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
@@ -96,7 +132,7 @@ fun AuthView(
 
             // Subtítulo Bienvenido de vuelta
             Text(
-                text = stringResource(R.string.login_subtitle),
+                text = stringResource(R.string.welcome_title),
                 color = Color.Gray,
                 fontSize = 14.sp
             )
@@ -165,7 +201,7 @@ fun AuthView(
                         )
                     )
                     Text(
-                        text = stringResource(R.string.remember_me),
+                        text = stringResource(R.string.check_remember),
                         fontSize = 12.sp,
                         color = Color.Black
                     )
@@ -183,15 +219,15 @@ fun AuthView(
             // Botón login
             Button(
                 onClick = {
-                    showLoadingAlert = true
+                    //showLoadingAlert = true
                     viewModel.login(document, password) { success, messageResId ->
-                        showLoadingAlert = false
+                        //showLoadingAlert = false
                         if (success) {
                             navController.navigate("home")
                         } else {
-                            titleDialog = R.string.error_login
+                            //titleDialog = R.string.error_login_failed
                             messageDialog = messageResId
-                            showMessageAlert = true
+                            //showMessageAlert = true
                         }
                     }
                 },
@@ -221,7 +257,7 @@ fun AuthView(
                     fontSize = 13.sp
                 )
                 Text(
-                    text = stringResource(R.string.text_register_here),
+                    text = stringResource(R.string.text_register),
                     color = Color(0xFF1353E8),
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,

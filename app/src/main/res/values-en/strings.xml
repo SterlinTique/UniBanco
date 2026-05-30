@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- APP -->
+    <string name="app_name">UniBanco</string>
+
+    <!--Login-->
+
+    <string name="welcome_title">Welcome back</string>
+
+    <string name="label_document">Identity document</string>
+    <string name="inner_label_document">Enter your document</string>
+
+    <string name="label_password">Password</string>
+    <string name="inner_label_password">Enter your password</string>
+
+    <string name="check_remember">Remember me</string>
+
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="text_no_account">¿Don´t have an account?</string>
+
+    <string name="btn_login">Log in</string>
+
+    <string name="text_register">Register here</string>
+    <string name="copyright">© 2026 UniBanco. All rights reserved.</string>
+    <string name="error_login_failed">Incorrect credentials</string>
+
+    <!-- REGISTER -->
+    <string name="register_title">Create Account</string>
+    <string name="register_subtitle">Fill in your details</string>
+
+    <string name="label_name">Full Name</string>
+    <string name="label_email">Email Address</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_birthdate">Date of Birth</string>
+
+    <string name="placeholder_birthdate">DD/MM/YYYY</string>
+
+    <string name="label_confirm_password">Confirm Password</string>
+
+    <string name="btn_register">Sign Up</string>
+
+    <string name="text_already_account">Already have an account?</string>
+    <string name="text_login_here">Log In</string>
+
+    <!-- MENSAJES -->
+    <string name="success_login">Login Successful</string>
+    <string name="success_register">User registered successfully</string>
+    <string name="error_register">Error registering user</string>
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="error_password_match">Passwords do not match</string>
+
+    <!-- ALERT DIALOGS -->
+    <string name="error_login">Invalid data error</string>
+    <string name="text_loading">Loading…</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="btn_accept">Accept</string>
+
+</resources>
