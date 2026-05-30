@@ -1,5 +1,7 @@
 package com.utp.unibanco.presentation.login
 
+
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -26,8 +28,8 @@ import androidx.navigation.compose.rememberNavController
 import com.utp.unibanco.R
 import com.utp.unibanco.presentation.components.ShowLoadingAlertDialog
 import com.utp.unibanco.presentation.components.ShowMessageAlertDialog
-
-
+import com.utp.unibanco.utils.setLocale
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
 fun AuthView(
@@ -43,6 +45,7 @@ fun AuthView(
     var titleDialog by remember { mutableIntStateOf(0) }
     var messageDialog by remember { mutableIntStateOf(0) }
     var showLanguageMenu by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     // Diálogo de carga
     if (showLoadingAlert) {
@@ -58,7 +61,6 @@ fun AuthView(
             dialogText = messageDialog
         )
     }
-
 
     Box(
         modifier = Modifier
@@ -79,6 +81,7 @@ fun AuthView(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.TopEnd
             ){
+                Box{
                 IconButton(onClick= { showLanguageMenu = true}) {
                     Icon(
                         imageVector = Icons.Default.Settings,
@@ -93,12 +96,20 @@ fun AuthView(
                 ) {
                     DropdownMenuItem(
                         text = { Text("co Español") },
-                        onClick = { showLanguageMenu = false}
+                        onClick = {
+                            setLocale(context, "es")
+                            showLanguageMenu = false
+                            (context as? Activity)?.recreate()
+                        }
                     )
                     DropdownMenuItem(
                         text = { Text("us English") },
-                        onClick = { showLanguageMenu = false},
+                        onClick = {
+                            setLocale(context, "en")
+                            showLanguageMenu = false
+                            (context as? Activity)?.recreate() },
                     )
+                }
                 }
             }
 
