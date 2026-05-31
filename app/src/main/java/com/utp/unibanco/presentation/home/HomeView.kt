@@ -26,6 +26,7 @@ import com.utp.unibanco.presentation.components.ShowLoadingAlertDialog
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.ui.res.stringResource
 import com.utp.unibanco.R
+import com.utp.unibanco.domain.model.Movement
 import java.util.Locale
 
 @Composable
@@ -36,10 +37,12 @@ fun HomeView(
 ) {
     val user by viewModel.userState
     val isLoading by viewModel.isLoading
+    val account by viewModel.accountState
+    val movements by viewModel.movementsState
 
     LaunchedEffect(document) {
         document?.let {
-            viewModel.loadUserData(it)
+            viewModel.loadHomeData(it)
         }
     }
 
@@ -60,7 +63,7 @@ fun HomeView(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            BalanceCard(balance = user?.balance ?: 0.0)
+            BalanceCard(balance = account?.balance ?: 0.0)
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -68,7 +71,7 @@ fun HomeView(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            RecentTransactionsSection()
+            RecentTransactionsSection(movements)
         }
     }
 }
@@ -128,7 +131,7 @@ fun BalanceCard(balance: Double) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "S/ ${String.format(Locale.getDefault(), "%.2f", balance)}",
+                text = "$ ${String.format(Locale.getDefault(), "%,.0f", balance)}",
                 color = Color.White,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
@@ -169,7 +172,7 @@ fun QuickActionButton(icon: ImageVector, label: String) {
 }
 
 @Composable
-fun RecentTransactionsSection() {
+fun RecentTransactionsSection(movements: List<Movement>) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = stringResource(R.string.home_recent_transactions),
@@ -178,24 +181,42 @@ fun RecentTransactionsSection() {
             color = Color.Black
         )
         Spacer(modifier = Modifier.height(12.dp))
-        // Placeholder for transactions
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                TransactionItem("Transferencia a Juan", "- S/ 50.00", "Hoy")
-                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-                TransactionItem("Pago de Luz", "- S/ 120.00", "Ayer")
-                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-                TransactionItem("Abono de Sueldo", "+ S/ 2500.00", "15 Oct")
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                if (movements.isEmpty()) {
+                    Text(
+                        text = "No hay movimientos",
+                        color = Color.Gray
+                    )
+                } else {
+                    movements.forEachIndexed { index, movement ->
+                        TransactionItem(
+                            title = movement.type.replaceFirstChar {
+                                it.uppercase()
+                            },
+                            amount = movement.amount,
+                            date = movement.date,
+                            isDeposit = movement.type == "deposito"
+                        )
+                        if (index < movements.lastIndex) {
+                            HorizontalDivider(
+                                modifier = Modifier.padding(vertical = 8.dp)
+                            )
+                        }
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-fun TransactionItem(title: String, amount: String, date: String) {
+fun TransactionItem(title: String, amount: Double, date: String, isDeposit: Boolean){
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -206,10 +227,20 @@ fun TransactionItem(title: String, amount: String, date: String) {
             Text(text = date, fontSize = 12.sp, color = Color.Gray)
         }
         Text(
-            text = amount,
+            text =
+                if (isDeposit)
+                    "+ $ ${String.format("%,.0f", amount)}"
+                else
+                    "- $ ${String.format("%,.0f", amount)}",
+
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
-            color = if (amount.startsWith("+")) Color(0xFF4CAF50) else Color.Red
+
+            color =
+                if (isDeposit)
+                    Color(0xFF4CAF50)
+                else
+                    Color.Red
         )
     }
 }
