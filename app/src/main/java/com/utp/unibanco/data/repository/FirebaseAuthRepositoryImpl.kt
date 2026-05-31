@@ -37,4 +37,19 @@ class FirebaseAuthRepositoryImpl(
                 onResult(false, R.string.error_register)
             }
     }
+
+    override fun getUser(document: String, onResult: (User?) -> Unit) {
+        dataSource.getUser(document)
+            .addOnSuccessListener { dataUser ->
+                if (dataUser.exists()) {
+                    val user = dataUser.getValue(User::class.java)
+                    onResult(user)
+                } else {
+                    onResult(null)
+                }
+            }
+            .addOnFailureListener {
+                onResult(null)
+            }
+    }
 }
