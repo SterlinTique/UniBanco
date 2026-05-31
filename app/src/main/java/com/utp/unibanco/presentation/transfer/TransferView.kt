@@ -60,7 +60,6 @@ fun TransferView(
         ) {
             Spacer(modifier = Modifier.height(20.dp))
 
-
             // Título
             Text(
                 text = stringResource(R.string.transfer_title),
@@ -81,7 +80,11 @@ fun TransferView(
             // Documento o teléfono destino
             OutlinedTextField(
                 value = receiver,
-                onValueChange = { receiver = it },
+                onValueChange = {
+                    if (it.length <= 10 && it.all { char -> char.isDigit() }) {
+                        receiver = it
+                    }
+                },
                 label = { Text(stringResource(R.string.label_receiver), color = Color.Black) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
@@ -102,7 +105,11 @@ fun TransferView(
             // Monto
             OutlinedTextField(
                 value = amount,
-                onValueChange = { amount = it },
+                onValueChange = {
+                    if (it.length <= 10 && it.all { char -> char.isDigit() || char == '.' }) {
+                        amount = it
+                    }
+                },
                 label = { Text(stringResource(R.string.label_amount), color = Color.Black) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
@@ -124,13 +131,13 @@ fun TransferView(
             Button(
                 onClick = {
                     showLoadingAlert = true
-                    viewModel.transfer(senderDocument, receiver, amount) { success, msg ->
+                    viewModel.transfer(senderDocument, receiver, amount) { success, messageResId ->
                         showLoadingAlert = false
                         if (success) {
                             navController.navigate("home/$senderDocument")
                         } else {
                             titleDialog = R.string.error_transfer
-                            messageDialog = R.string.error_empty_fields // o el que corresponda
+                            messageDialog = messageResId
                             showMessageAlert = true
                         }
                     }
@@ -139,9 +146,7 @@ fun TransferView(
                     .fillMaxWidth()
                     .height(55.dp),
                 shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF1353E8)
-                )
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1353E8))
             ) {
                 Text(
                     text = stringResource(R.string.btn_transfer),
