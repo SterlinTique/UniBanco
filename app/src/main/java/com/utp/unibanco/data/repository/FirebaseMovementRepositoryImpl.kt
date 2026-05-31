@@ -24,4 +24,10 @@ class FirebaseMovementRepositoryImpl(
                 onResult(emptyList())
             }
     }
+
+    override fun saveMovement(document: String, movement: Movement, onResult: (Boolean) -> Unit) {
+        dataSource.saveMovement(document, movement)
+            .addOnSuccessListener { onResult(true) }
+            .addOnFailureListener { onResult(false) }
+    }
 }

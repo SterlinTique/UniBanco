@@ -52,4 +52,21 @@ class FirebaseAuthRepositoryImpl(
                 onResult(null)
             }
     }
+
+    override fun getUserByPhone(phone: String, onResult: (User?) -> Unit) {
+        dataSource.getUserByPhone(phone)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.exists() && snapshot.children.count() > 0) {
+                    val userSnapshot = snapshot.children.first()
+                    val user = userSnapshot.getValue(User::class.java)
+                    onResult(user)
+                } else {
+                    onResult(null)
+                }
+            }
+            .addOnFailureListener {
+                onResult(null)
+            }
+    }
 }

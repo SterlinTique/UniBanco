@@ -16,6 +16,10 @@ class FirebaseAccountDataSource {
     fun saveAccount(document: String, account: Account): Task<Void> {
         return database.child(document).setValue(account)
     }
+
+    fun updateBalance(document: String, newBalance: Double): Task<Void> {
+        return database.child(document).child("balance").setValue(newBalance)
+    }
 }
 
 
