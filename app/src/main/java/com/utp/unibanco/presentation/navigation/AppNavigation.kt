@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.utp.unibanco.presentation.home.HomeView
 import com.utp.unibanco.presentation.login.AuthView
 import com.utp.unibanco.presentation.register.RegisterView
+import com.utp.unibanco.presentation.transfer.TransferView
 
 @Composable
 fun AppNavigation() {
@@ -35,6 +36,14 @@ fun AppNavigation() {
         composable("register") {
             RegisterView(navController = navController)
         }
+
+        composable("transfer/{senderDocument}",
+            arguments = listOf(navArgument("senderDocument") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val senderDocument = backStackEntry.arguments?.getString("senderDocument") ?: ""
+            TransferView(senderDocument = senderDocument, navController = navController)
+        }
+
 
     }
 }

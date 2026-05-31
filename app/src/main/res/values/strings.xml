@@ -59,6 +59,21 @@
     <string name="home_action_history">Movimientos</string>
     <string name="home_recent_transactions">Movimientos recientes</string>
 
+    <!-- TRANSFER -->
+    <string name="transfer_title">Transferencia</string>
+    <string name="transfer_subtitle">Envía dinero fácilmente</string>
+
+    <string name="label_receiver">Documento o teléfono destino</string>
+    <string name="placeholder_receiver">Ingresa documento o teléfono</string>
+
+    <string name="label_amount">Monto</string>
+    <string name="placeholder_amount">Ingresa el monto</string>
+
+    <string name="btn_transfer">Transferir</string>
+
+    <string name="error_transfer">Error en la transferencia</string>
+    <string name="success_transfer">Transferencia realizada correctamente</string>
+
     <!-- ALERT DIALOGS -->
     <string name="text_loading">Cargando...</string>
     <string name="dialog_error_title">Error</string>

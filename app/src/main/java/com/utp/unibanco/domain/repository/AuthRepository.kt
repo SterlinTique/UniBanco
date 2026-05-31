@@ -6,4 +6,6 @@ interface AuthRepository {
     fun login(document: String, password: String, onResult: (Boolean, Int) -> Unit)
     fun register(user: User, onResult: (Boolean, Int) -> Unit)
     fun getUser(document: String, onResult: (User?) -> Unit)
+
+    fun getUserByPhone(phone: String, onResult: (User?) -> Unit)
 }
