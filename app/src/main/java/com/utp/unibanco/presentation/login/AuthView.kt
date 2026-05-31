@@ -234,7 +234,7 @@ fun AuthView(
                     viewModel.login(document, password) { success, messageResId ->
                         //showLoadingAlert = false
                         if (success) {
-                            navController.navigate("home")
+                            navController.navigate("home/$document")
                         } else {
                             //titleDialog = R.string.error_login_failed
                             messageDialog = messageResId

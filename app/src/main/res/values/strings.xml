@@ -49,6 +49,15 @@
     <string name="error_empty_fields">Completa todos los campos</string>
     <string name="error_password_match">Las contraseñas no coinciden</string>
 
+    <!-- HOME -->
+    <string name="home_greeting">Hola,</string>
+    <string name="home_balance_label">Saldo total disponible</string>
+    <string name="home_action_transfer">Transferir</string>
+    <string name="home_action_cards">Tarjetas</string>
+    <string name="home_action_payments">Pagos</string>
+    <string name="home_action_history">Movimientos</string>
+    <string name="home_recent_transactions">Movimientos recientes</string>
+
     <!-- ALERT DIALOGS -->
     <string name="error_login">Error datos invalidos</string>
     <string name="text_loading">Cargando…</string>
