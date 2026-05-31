@@ -202,9 +202,7 @@ fun RecentTransactionsSection(movements: List<Movement>) {
                 } else {
                     movements.forEachIndexed { index, movement ->
                         TransactionItem(
-                            title = movement.type.replaceFirstChar {
-                                it.uppercase()
-                            },
+                            title = movement.type.replaceFirstChar { it.uppercase() },
                             amount = movement.amount,
                             date = movement.date,
                             type = movement.type

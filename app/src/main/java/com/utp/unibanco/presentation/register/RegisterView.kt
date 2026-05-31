@@ -36,6 +36,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.utp.unibanco.R
+import com.utp.unibanco.presentation.components.ShowLoadingAlertDialog
+import com.utp.unibanco.presentation.components.ShowMessageAlertDialog
 
 @Composable
 fun RegisterView(
@@ -51,12 +53,16 @@ fun RegisterView(
     var password by rememberSaveable { mutableStateOf("") }
     var confirmPassword by rememberSaveable { mutableStateOf("") }
 
+    var showLoadingAlert by remember { mutableStateOf(false) }
+    var showMessageAlert by remember { mutableStateOf(false) }
+    var titleDialog by remember { mutableIntStateOf(0) }
+    var messageDialog by remember { mutableIntStateOf(0) }
+
+
     val context = LocalContext.current
     val calendar = Calendar.getInstance()
 
-    var message by remember {
-        mutableIntStateOf(0)
-    }
+    var message by remember { mutableIntStateOf(0) }
 
     val datePickerDialog = DatePickerDialog(
         context,
@@ -67,6 +73,19 @@ fun RegisterView(
         calendar.get(Calendar.MONTH),
         calendar.get(Calendar.DAY_OF_MONTH)
     )
+
+    if (showLoadingAlert) {
+        ShowLoadingAlertDialog()
+    }
+    if (showMessageAlert) {
+        ShowMessageAlertDialog(
+            onConfirmation = { showMessageAlert = false },
+            dialogTitle = titleDialog,
+            dialogText = messageDialog
+        )
+    }
+
+
 
     Column(
         modifier = Modifier
@@ -105,12 +124,12 @@ fun RegisterView(
         // Documento
         OutlinedTextField(
             value = document,
-            onValueChange = { document = it },
+            onValueChange = {
+                if (it.length <= 10 && it.all { char -> char.isDigit() }) { document = it }
+            },
             label = { Text(stringResource(R.string.label_document)) },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number
-            ),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,
             shape = RoundedCornerShape(14.dp),
             colors = OutlinedTextFieldDefaults.colors(
@@ -123,6 +142,7 @@ fun RegisterView(
                 cursorColor = Color(0xFF1353E8)
             )
         )
+
 
         Spacer(modifier = Modifier.height(15.dp))
 
@@ -174,12 +194,12 @@ fun RegisterView(
         // Teléfono
         OutlinedTextField(
             value = phone,
-            onValueChange = { phone = it },
+            onValueChange = {
+                if (it.length <= 10 && it.all { char -> char.isDigit() }) { phone = it }
+            },
             label = { Text(stringResource(R.string.label_phone)) },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Phone
-            ),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
             singleLine = true,
             shape = RoundedCornerShape(14.dp),
             colors = OutlinedTextFieldDefaults.colors(
@@ -272,32 +292,26 @@ fun RegisterView(
 
         Button(
             onClick = {
+                showLoadingAlert = true
                 viewModel.register(
-                    document = document,
-                    name = name,
-                    email = email,
-                    phone = phone,
-                    birthDate = birthDate,
-                    password = password,
-                    confirmPassword = confirmPassword
-
+                    document, name, email, phone, birthDate, password, confirmPassword
                 ) { success, response ->
-                    message = response
+                    showLoadingAlert = false
                     if (success) {
                         navController.navigate("auth")
+                    } else {
+                        titleDialog = R.string.error_register
+                        messageDialog = response
+                        showMessageAlert = true
                     }
                 }
             },
-
             modifier = Modifier
                 .fillMaxWidth()
                 .height(55.dp),
             shape = RoundedCornerShape(14.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF1353E8)
-            )
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1353E8))
         ) {
-
             Text(
                 text = stringResource(R.string.btn_register),
                 color = Color.White,
@@ -306,19 +320,8 @@ fun RegisterView(
             )
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
 
-        if (message != 0) {
-            Text(
-                text = stringResource(message),
-                color = if (message == R.string.success_register) {
-                    Color(0xFF2E7D32)
-                } else {
-                    Color.Red
-                }
-            )
-            Spacer(modifier = Modifier.height(15.dp))
-        }
+        Spacer(modifier = Modifier.height(20.dp))
 
         Row {
             Text(
