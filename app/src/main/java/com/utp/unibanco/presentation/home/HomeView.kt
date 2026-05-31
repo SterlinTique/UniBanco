@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import com.utp.unibanco.R
 import com.utp.unibanco.domain.model.Movement
 import java.util.Locale
+import androidx.compose.ui.platform.LocalLocale
 
 @Composable
 fun HomeView(
@@ -131,7 +132,7 @@ fun BalanceCard(balance: Double) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "$ ${String.format(Locale.getDefault(), "%,.0f", balance)}",
+                text = "$ ${String.format(LocalLocale.current.platformLocale, "%,.0f", balance)}",
                 color = Color.White,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
@@ -190,7 +191,7 @@ fun RecentTransactionsSection(movements: List<Movement>) {
             ) {
                 if (movements.isEmpty()) {
                     Text(
-                        text = "No hay movimientos",
+                        text = stringResource(R.string.home_not_transactions),
                         color = Color.Gray
                     )
                 } else {

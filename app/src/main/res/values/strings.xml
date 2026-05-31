@@ -56,6 +56,7 @@
     <string name="home_action_cards">Tarjetas</string>
     <string name="home_action_payments">Pagos</string>
     <string name="home_action_history">Movimientos</string>
+    <string name="home_not_transactions">sin movimientos</string>
     <string name="home_recent_transactions">Movimientos recientes</string>
 
     <!-- ALERT DIALOGS -->

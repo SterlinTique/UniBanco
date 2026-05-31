@@ -49,6 +49,16 @@
     <string name="error_empty_fields">Please fill in all fields</string>
     <string name="error_password_match">Passwords do not match</string>
 
+    <!-- HOME -->
+    <string name="home_greeting">Hello,</string>
+    <string name="home_balance_label">Total available balance</string>
+    <string name="home_action_transfer">Transfer</string>
+    <string name="home_action_cards">Cards</string>
+    <string name="home_action_payments">Payments</string>
+    <string name="home_action_history">Transactions</string>
+    <string name="home_not_transactions">No transactions</string>
+    <string name="home_recent_transactions">Recent transactions</string>
+
     <!-- ALERT DIALOGS -->
     <string name="error_login">Invalid data error</string>
     <string name="text_loading">Loading…</string>
