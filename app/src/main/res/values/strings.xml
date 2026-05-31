@@ -48,7 +48,19 @@
     <string name="success_register">Usuario registrado correctamente</string>
     <string name="error_register">Error al registrar usuario</string>
     <string name="error_empty_fields">Completa todos los campos</string>
+
+    <string name="error_invalid_document">El documento debe contener solo números</string>
+    <string name="error_password_length">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_document_length">El documento debe tener entre 8 y 10 dígitos</string>
+    <string name="error_invalid_name">El nombre solo puede contener letras y espacios</string>
+    <string name="error_invalid_email">Correo electrónico inválido</string>
+    <string name="error_invalid_phone">El teléfono debe contener solo números</string>
+    <string name="error_phone_length">El teléfono debe tener 10 dígitos</string>
     <string name="error_password_match">Las contraseñas no coinciden</string>
+    <string name="error_invalid_birthdate">Fecha de nacimiento inválida</string>
+    <string name="error_future_birthdate">La fecha no puede ser mayor a la actual</string>
+    <string name="error_min_age">Debes tener al menos 14 años</string>
+    <string name="error_max_age">La edad no puede ser mayor a 100 años</string>
 
     <!-- HOME -->
     <string name="home_greeting">Hola,</string>
