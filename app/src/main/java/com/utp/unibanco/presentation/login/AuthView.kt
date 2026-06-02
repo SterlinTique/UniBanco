@@ -55,8 +55,7 @@ fun AuthView(
     // Diálogo de mensaje
     if (showMessageAlert) {
         ShowMessageAlertDialog(
-            //showMessageAlert = false
-            onConfirmation = { },
+            onConfirmation = {showMessageAlert = false},
             dialogTitle = titleDialog,
             dialogText = messageDialog
         )
@@ -234,15 +233,15 @@ fun AuthView(
             // Botón login
             Button(
                 onClick = {
-                    //showLoadingAlert = true
+                    showLoadingAlert = true
                     viewModel.login(document, password) { success, messageResId ->
-                        //showLoadingAlert = false
+                        showLoadingAlert = false
                         if (success) {
                             navController.navigate("home/$document")
                         } else {
-                            //titleDialog = R.string.error_login_failed
+                            titleDialog = R.string.error_login_failed
                             messageDialog = messageResId
-                            //showMessageAlert = true
+                            showMessageAlert = true
                         }
                     }
                 },

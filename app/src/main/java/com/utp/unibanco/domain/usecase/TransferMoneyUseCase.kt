@@ -16,23 +16,19 @@ class TransferMoneyUseCase(
 
     fun execute(
         senderDocument: String,
-        receiverIdentifier: String, // puede ser doc o teléfono
+        receiverIdentifier: String,
         amount: Double,
         onResult: (Boolean, String) -> Unit
     ) {
-
-        // 1. validar monto
         if (amount <= 0) {
             onResult(false, "Monto inválido")
             return
         }
-
-        // 2. obtener usuario destino (primero intentamos documento)
+        // obtener usuario destino
         authRepository.getUser(receiverIdentifier) { userByDoc ->
             if (userByDoc != null) {
                 processTransfer(senderDocument, userByDoc.document, amount, onResult)
             } else {
-                // 3. si no existe por documento, buscar por teléfono
                 authRepository.getUserByPhone(receiverIdentifier) { userByPhone ->
                     if (userByPhone != null) {
                         processTransfer(senderDocument, userByPhone.document, amount, onResult)
@@ -51,7 +47,7 @@ class TransferMoneyUseCase(
         onResult: (Boolean, String) -> Unit
     ) {
 
-        // 4. obtener cuenta origen
+        // obtener cuenta origen
         accountRepository.getAccount(sender) { senderAccount ->
 
             if (senderAccount == null) { onResult(false, "Cuenta origen no existe")
@@ -60,7 +56,7 @@ class TransferMoneyUseCase(
             if (senderAccount.balance < amount) { onResult(false, "Saldo insuficiente")
                 return@getAccount
             }
-            // 5. obtener cuenta destino
+            //  obtener cuenta destino
             accountRepository.getAccount(receiver) { receiverAccount ->
                 if (receiverAccount == null) { onResult(false, "Cuenta destino no existe")
                     return@getAccount
@@ -69,7 +65,7 @@ class TransferMoneyUseCase(
                 val newSenderBalance = senderAccount.balance - amount
                 val newReceiverBalance = receiverAccount.balance + amount
 
-                // 6. actualizar cuentas
+                // actualizar cuentas
                 accountRepository.updateBalance(sender, newSenderBalance) { ok1 ->
                     if (!ok1) { onResult(false, "Error actualizando origen")
                         return@updateBalance
@@ -79,13 +75,11 @@ class TransferMoneyUseCase(
                             return@updateBalance
                         }
 
-                        // 7. crear movimientos
+                        // crear movimientos
                         val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                             .format(Date())
-
                         val outMovement = Movement(amount = amount, date = date, type = "transferencia enviada")
                         val inMovement = Movement(amount = amount, date = date, type = "transferencia recibida")
-
                         movementRepository.saveMovement(sender, outMovement) { _ ->
                             movementRepository.saveMovement(receiver, inMovement) { _ ->
                                 onResult(true, "Transferencia exitosa")

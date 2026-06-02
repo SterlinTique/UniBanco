@@ -29,4 +29,10 @@ class FirebaseAccountRepositoryImpl(
             .addOnSuccessListener { onResult(true) }
             .addOnFailureListener { onResult(false) }
     }
+
+    override fun saveAccount(document: String, account: Account, onResult: (Boolean) -> Unit) {
+        dataSource.saveAccount(document, account)
+            .addOnSuccessListener { onResult(true) }
+            .addOnFailureListener { onResult(false) }
+    }
 }

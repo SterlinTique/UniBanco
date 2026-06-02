@@ -6,4 +6,5 @@ interface AccountRepository {
 
     fun getAccount(document: String, onResult: (Account?) -> Unit)
     fun updateBalance(document: String, newBalance: Double, onResult: (Boolean) -> Unit)
+    fun saveAccount(document: String, account: Account, onResult: (Boolean) -> Unit)
 }

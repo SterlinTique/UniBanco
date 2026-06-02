@@ -72,7 +72,7 @@
 
     <string name="home_action_transfer">Transferir</string>
     <string name="home_action_cards">Tarjetas</string>
-    <string name="home_action_payments">Pagos</string>
+    <string name="home_action_payments">Solicita</string>
 
     <string name="home_action_history">Movimientos</string>
     <string name="home_not_transactions">sin movimientos</string>

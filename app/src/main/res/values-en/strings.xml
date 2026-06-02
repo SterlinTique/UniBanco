@@ -72,7 +72,7 @@
     <string name="home_balance_label">Total available balance</string>
     <string name="home_action_transfer">Transfer</string>
     <string name="home_action_cards">Cards</string>
-    <string name="home_action_payments">Payments</string>
+    <string name="home_action_payments">Request</string>
     <string name="home_action_history">Transactions</string>
     <string name="home_not_transactions">No transactions</string>
     <string name="home_recent_transactions">Recent transactions</string>

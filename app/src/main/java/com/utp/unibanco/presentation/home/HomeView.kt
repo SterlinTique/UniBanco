@@ -71,7 +71,7 @@ fun HomeView(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            QuickActionsSection(navController = navController,document)
+            QuickActionsSection(navController = navController, document = document, viewModel = viewModel)
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -165,7 +165,7 @@ fun BalanceCard(balance: Double) {
 }
 
 @Composable
-fun QuickActionsSection(navController: NavController, document: String?) {
+fun QuickActionsSection(navController: NavController, document: String?, viewModel: HomeViewModel) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
@@ -176,7 +176,9 @@ fun QuickActionsSection(navController: NavController, document: String?) {
             onClick = { document?.let { navController.navigate("transfer/$it") } }
         )
         QuickActionButton(icon = Icons.Default.CreditCard, label = stringResource(R.string.home_action_cards), onClick= {navController.navigate("card")})
-        QuickActionButton(icon = Icons.Default.AccountBalanceWallet, label = stringResource(R.string.home_action_payments))
+        QuickActionButton(icon = Icons.Default.AccountBalanceWallet, label = stringResource(R.string.home_action_payments),
+            onClick = { document?.let { idDocumento -> viewModel.requestBalanceDemo(idDocumento, 50000.0) } }
+        )
         QuickActionButton(icon = Icons.Default.History, label = stringResource(R.string.home_action_history))
     }
 }

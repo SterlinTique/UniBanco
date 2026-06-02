@@ -12,11 +12,13 @@ import com.utp.unibanco.domain.model.User
 import com.utp.unibanco.domain.usecase.GetAccountDataUseCase
 import com.utp.unibanco.domain.usecase.GetMovementsUseCase
 import com.utp.unibanco.domain.usecase.GetUserDataUseCase
+import com.utp.unibanco.domain.usecase.RequestBalanceDemoUseCase
 
 class HomeViewModel(
     private val getUserDataUseCase: GetUserDataUseCase = GetUserDataUseCase(FirebaseAuthRepositoryImpl()),
     private val getAccountDataUseCase: GetAccountDataUseCase = GetAccountDataUseCase(FirebaseAccountRepositoryImpl()),
-    private val getMovementsUseCase: GetMovementsUseCase = GetMovementsUseCase(FirebaseMovementRepositoryImpl())
+    private val getMovementsUseCase: GetMovementsUseCase = GetMovementsUseCase(FirebaseMovementRepositoryImpl()),
+    private val requestBalanceDemoUseCase: RequestBalanceDemoUseCase = RequestBalanceDemoUseCase(FirebaseAccountRepositoryImpl())
 ) : ViewModel() {
 
     private val _userState = mutableStateOf<User?>(null)
@@ -44,6 +46,17 @@ class HomeViewModel(
                     _movementsState.value = movements
                     _isLoading.value = false
                 }
+            }
+        }
+    }
+
+    fun requestBalanceDemo(document: String, amount: Double) {
+        _isLoading.value = true
+        requestBalanceDemoUseCase(document, amount) { success ->
+            if (success) {
+                loadHomeData(document)
+            } else {
+                _isLoading.value = false
             }
         }
     }
