@@ -10,6 +10,7 @@ import com.utp.unibanco.presentation.card.CardView
 import com.utp.unibanco.presentation.home.HomeView
 import com.utp.unibanco.presentation.login.AuthView
 import com.utp.unibanco.presentation.register.RegisterView
+import com.utp.unibanco.presentation.transfer.TransferView
 
 @Composable
 fun AppNavigation() {
@@ -40,6 +41,14 @@ fun AppNavigation() {
         composable("card") {
             CardView(navController = navController)
         }
+
+        composable("transfer/{senderDocument}",
+            arguments = listOf(navArgument("senderDocument") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val senderDocument = backStackEntry.arguments?.getString("senderDocument") ?: ""
+            TransferView(senderDocument = senderDocument, navController = navController)
+        }
+
 
     }
 }

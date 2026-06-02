@@ -67,7 +67,7 @@ fun HomeView(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            QuickActionsSection(navController = navController)
+            QuickActionsSection(navController = navController,document)
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -141,11 +141,17 @@ fun BalanceCard(balance: Double) {
 }
 
 @Composable
-fun QuickActionsSection(navController: NavController) {
+fun QuickActionsSection(navController: NavController, document: String?) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
+        QuickActionButton(
+            icon = Icons.AutoMirrored.Filled.Send,
+            label = stringResource(R.string.home_action_transfer),
+            onClick = { document?.let { navController.navigate("transfer/$it") } }
+        )
+        QuickActionButton(icon = Icons.Default.CreditCard, label = stringResource(R.string.home_action_cards))
         QuickActionButton(icon = Icons.AutoMirrored.Filled.Send, label = stringResource(R.string.home_action_transfer))
         QuickActionButton(icon = Icons.Default.CreditCard, label = stringResource(R.string.home_action_cards), onClick= {navController.navigate("card")})
         QuickActionButton(icon = Icons.Default.AccountBalanceWallet, label = stringResource(R.string.home_action_payments))
@@ -153,10 +159,10 @@ fun QuickActionsSection(navController: NavController) {
     }
 }
 
+
 @Composable
 fun QuickActionButton(icon: ImageVector, label: String, onClick: () -> Unit = {}) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+    Column(horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
             modifier = Modifier
@@ -165,7 +171,9 @@ fun QuickActionButton(icon: ImageVector, label: String, onClick: () -> Unit = {}
                 .background(Color.White, RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center
         ) {
-            Icon(icon, contentDescription = label, tint = Color(0xFF1353E8))
+            IconButton(onClick = onClick) {
+                Icon(icon, contentDescription = label, tint = Color(0xFF1353E8))
+            }
         }
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = label, fontSize = 12.sp, color = Color.Black)
@@ -197,12 +205,11 @@ fun RecentTransactionsSection(movements: List<Movement>) {
                 } else {
                     movements.forEachIndexed { index, movement ->
                         TransactionItem(
-                            title = movement.type.replaceFirstChar {
-                                it.uppercase()
-                            },
+                            title = movement.type.replaceFirstChar { it.uppercase() },
                             amount = movement.amount,
                             date = movement.date,
-                            isDeposit = movement.type == "deposito"
+                            type = movement.type
+
                         )
                         if (index < movements.lastIndex) {
                             HorizontalDivider(
@@ -217,7 +224,13 @@ fun RecentTransactionsSection(movements: List<Movement>) {
 }
 
 @Composable
-fun TransactionItem(title: String, amount: Double, date: String, isDeposit: Boolean){
+fun TransactionItem(title: String, amount: Double, date: String, type: String) {
+    val isIncoming = type.equals("deposito", ignoreCase = true) ||
+            type.contains("recibida", ignoreCase = true)
+
+    val prefix = if (isIncoming) "+ $" else "- $"
+    val color = if (isIncoming) Color(0xFF4CAF50) else Color.Red
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -228,20 +241,11 @@ fun TransactionItem(title: String, amount: Double, date: String, isDeposit: Bool
             Text(text = date, fontSize = 12.sp, color = Color.Gray)
         }
         Text(
-            text =
-                if (isDeposit)
-                    "+ $ ${String.format("%,.0f", amount)}"
-                else
-                    "- $ ${String.format("%,.0f", amount)}",
-
+            text = "$prefix${String.format("%,.0f", amount)}",
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
-
-            color =
-                if (isDeposit)
-                    Color(0xFF4CAF50)
-                else
-                    Color.Red
+            color = color
         )
     }
 }
+

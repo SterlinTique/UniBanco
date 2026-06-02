@@ -47,7 +47,24 @@
     <string name="success_register">Usuario registrado correctamente</string>
     <string name="error_register">Error al registrar usuario</string>
     <string name="error_empty_fields">Completa todos los campos</string>
+
+    <string name="error_invalid_document">El documento debe contener solo números</string>
+    <string name="error_password_length">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_document_length">El documento debe tener entre 8 y 10 dígitos</string>
+    <string name="error_invalid_name">El nombre solo puede contener letras y espacios</string>
+    <string name="error_invalid_email">Correo electrónico inválido</string>
+    <string name="error_invalid_phone">El teléfono debe contener solo números</string>
+    <string name="error_phone_length">El teléfono debe tener 10 dígitos</string>
     <string name="error_password_match">Las contraseñas no coinciden</string>
+    <string name="error_invalid_birthdate">Fecha de nacimiento inválida</string>
+    <string name="error_future_birthdate">La fecha no puede ser mayor a la actual</string>
+    <string name="error_min_age">Debes tener al menos 14 años</string>
+    <string name="error_max_age">La edad no puede ser mayor a 100 años</string>
+
+    <string name="error_invalid_receiver">El documento/teléfono del destinatario es inválido</string>
+    <string name="error_receiver_length">El documento/teléfono debe tener entre 8 y 10 dígitos</string>
+    <string name="error_invalid_amount">Monto inválido</string>
+
 
     <!-- HOME -->
     <string name="home_greeting">Hola,</string>
@@ -74,6 +91,21 @@
     <string name="virtual_debit">Débito virtual</string>
     <string name="use_card">Uso</string>
     <string name="only_use">Un solo uso</string>
+
+    <!-- TRANSFER -->
+    <string name="transfer_title">Transferencia</string>
+    <string name="transfer_subtitle">Envía dinero fácilmente</string>
+
+    <string name="label_receiver">Documento o teléfono destino</string>
+    <string name="placeholder_receiver">Ingresa documento o teléfono</string>
+
+    <string name="label_amount">Monto</string>
+    <string name="placeholder_amount">Ingresa el monto</string>
+
+    <string name="btn_transfer">Transferir</string>
+
+    <string name="error_transfer">Error en la transferencia</string>
+    <string name="success_transfer">Transferencia realizada correctamente</string>
 
     <!-- ALERT DIALOGS -->
     <string name="error_login">Error datos invalidos</string>

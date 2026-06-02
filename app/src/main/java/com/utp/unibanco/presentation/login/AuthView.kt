@@ -153,7 +153,10 @@ fun AuthView(
             // Documento
             OutlinedTextField(
                 value = document,
-                onValueChange = { document = it },
+                // Solo números y con limite hasta 10
+                onValueChange = {
+                    if (it.length <= 10 && it.all { char -> char.isDigit() }) { document = it }
+                },
                 label = { Text(stringResource(R.string.label_document), color = Color.Black) },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -169,6 +172,7 @@ fun AuthView(
                     cursorColor = Color(0xFF1353E8)
                 )
             )
+
 
             Spacer(modifier = Modifier.height(20.dp))
 

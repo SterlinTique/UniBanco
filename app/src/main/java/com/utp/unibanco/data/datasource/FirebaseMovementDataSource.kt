@@ -14,5 +14,10 @@ class FirebaseMovementDataSource {
         return database.child(document).get()
     }
 
+    fun saveMovement(document: String, movement: Movement): Task<Void> {
+        val key = database.child(document).push().key ?: return database.child(document).setValue(null)
+        return database.child(document).child(key).setValue(movement)
+    }
+
 }
 
