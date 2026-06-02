@@ -50,6 +50,23 @@
     <string name="error_empty_fields">Please fill in all fields</string>
     <string name="error_password_match">Passwords do not match</string>
 
+    <string name="error_invalid_document">The document must contain only numbers</string>
+    <string name="error_password_length">The password must be at least 6 characters long</string>
+    <string name="error_document_length">The document must be between 8 and 10 digits</string>
+    <string name="error_invalid_name">The name can only contain letters and spaces</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_invalid_phone">The phone number must contain only numbers</string>
+    <string name="error_phone_length">The phone number must be 10 digits</string>
+    <string name="error_invalid_birthdate">Invalid birthdate</string>
+    <string name="error_future_birthdate">The date cannot be later than today</string>
+    <string name="error_min_age">You must be at least 14 years old</string>
+    <string name="error_max_age">Age cannot be greater than 100 years</string>
+
+    <string name="error_invalid_receiver">Recipient document/phone number is invalid</string>
+    <string name="error_receiver_length">Recipient document/phone number must be between 8 and 10 digits</string>
+    <string name="error_invalid_amount">Invalid amount</string>
+
+
     <!-- HOME -->
     <string name="home_greeting">Hello,</string>
     <string name="home_balance_label">Total available balance</string>
@@ -59,6 +76,24 @@
     <string name="home_action_history">Transactions</string>
     <string name="home_not_transactions">No transactions</string>
     <string name="home_recent_transactions">Recent transactions</string>
+
+    <string name="close_user">logout</string>
+
+    <!-- TRANSFER -->
+    <string name="transfer_title">Transfer</string>
+    <string name="transfer_subtitle">Send money easily</string>
+
+    <string name="label_receiver">Recipient document or phone</string>
+    <string name="placeholder_receiver">Enter document or phone</string>
+
+    <string name="label_amount">Amount</string>
+    <string name="placeholder_amount">Enter the amount</string>
+
+    <string name="btn_transfer">Transfer</string>
+
+    <string name="error_transfer">Transfer error</string>
+    <string name="success_transfer">Transfer completed successfully</string>
+
 
     <!--Temporal_Cards-->
     <string name="back_title_card">Temporary card</string>

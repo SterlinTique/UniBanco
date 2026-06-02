@@ -153,7 +153,7 @@ fun AuthView(
             // Documento
             OutlinedTextField(
                 value = document,
-                // Solo números y con limite hasta 10
+                // Solo números y con límite hasta 10
                 onValueChange = {
                     if (it.length <= 10 && it.all { char -> char.isDigit() }) { document = it }
                 },

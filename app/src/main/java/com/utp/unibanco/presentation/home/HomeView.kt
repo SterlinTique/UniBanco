@@ -1,5 +1,6 @@
 package com.utp.unibanco.presentation.home
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -50,9 +51,12 @@ fun HomeView(
         ShowLoadingAlertDialog()
     }
 
+    BackHandler {
+        // No hace nada — bloquea el retroceso
+    }
     Scaffold(
         topBar = {
-            HomeTopBar(userName = user?.name ?: "Usuario")
+            HomeTopBar(userName = user?.name ?: "Usuario", navController = navController)
         }
     ) { paddingValues ->
         Column(
@@ -78,7 +82,8 @@ fun HomeView(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeTopBar(userName: String) {
+fun HomeTopBar(userName: String, navController: NavController) {
+    var showMenu by remember { mutableStateOf(false)}
     TopAppBar(
         title = {
             Column {
@@ -99,9 +104,28 @@ fun HomeTopBar(userName: String) {
             IconButton(onClick = { /* TODO */ }) {
                 Icon(Icons.Default.Notifications, contentDescription = "Notificaciones", tint = Color(0xFF1353E8))
             }
-            IconButton(onClick = { /* TODO */ }) {
-                Icon(Icons.Default.Person, contentDescription = "Perfil", tint = Color(0xFF1353E8))
+
+            Box {
+                IconButton(onClick = { showMenu = true }) {
+                    Icon(Icons.Default.Person, contentDescription = "Perfil", tint = Color(0xFF1353E8))
+                }
+
+                DropdownMenu(
+                    expanded = showMenu,
+                    onDismissRequest = { showMenu = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text(stringResource(R.string.close_user)) },
+                        onClick = {
+                            showMenu = false
+                            navController.navigate("auth") {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        }
+                    )
+                }
             }
+
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.White
@@ -151,8 +175,6 @@ fun QuickActionsSection(navController: NavController, document: String?) {
             label = stringResource(R.string.home_action_transfer),
             onClick = { document?.let { navController.navigate("transfer/$it") } }
         )
-        QuickActionButton(icon = Icons.Default.CreditCard, label = stringResource(R.string.home_action_cards))
-        QuickActionButton(icon = Icons.AutoMirrored.Filled.Send, label = stringResource(R.string.home_action_transfer))
         QuickActionButton(icon = Icons.Default.CreditCard, label = stringResource(R.string.home_action_cards), onClick= {navController.navigate("card")})
         QuickActionButton(icon = Icons.Default.AccountBalanceWallet, label = stringResource(R.string.home_action_payments))
         QuickActionButton(icon = Icons.Default.History, label = stringResource(R.string.home_action_history))

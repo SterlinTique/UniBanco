@@ -77,6 +77,8 @@
     <string name="home_action_history">Movimientos</string>
     <string name="home_not_transactions">sin movimientos</string>
     <string name="home_recent_transactions">Movimientos recientes</string>
+
+    <string name="close_user">Cerrar sesión</string>
     
     <!--Temporal_Cards-->
     <string name="back_title_card">Tarjeta temporal</string>
