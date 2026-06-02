@@ -7,5 +7,4 @@ data class User(
     val phone: String = "",
     val birthDate: String = "",
     val password: String = "",
-    val balance: Double = 0.0
 )
