@@ -17,4 +17,18 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun attachBaseContext(newBase: android.content.Context) {
+        val prefs = newBase.getSharedPreferences("settings", MODE_PRIVATE)
+        val lang = prefs.getString("language", "es") ?: "es"
+
+        val config = android.content.res.Configuration(newBase.resources.configuration)
+        config.setLocale(
+            java.util.Locale.Builder()
+                .setLanguage(lang)
+                .build()
+        )
+        super.attachBaseContext(newBase.createConfigurationContext(config))
+    }
+
 }

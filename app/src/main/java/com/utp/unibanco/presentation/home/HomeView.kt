@@ -1,6 +1,7 @@
 package com.utp.unibanco.presentation.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -9,7 +10,6 @@ import androidx.compose.material.icons.filled.CreditCard
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,7 +27,6 @@ import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.ui.res.stringResource
 import com.utp.unibanco.R
 import com.utp.unibanco.domain.model.Movement
-import java.util.Locale
 import androidx.compose.ui.platform.LocalLocale
 
 @Composable
@@ -68,7 +67,7 @@ fun HomeView(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            QuickActionsSection()
+            QuickActionsSection(navController = navController)
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -142,26 +141,27 @@ fun BalanceCard(balance: Double) {
 }
 
 @Composable
-fun QuickActionsSection() {
+fun QuickActionsSection(navController: NavController) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         QuickActionButton(icon = Icons.AutoMirrored.Filled.Send, label = stringResource(R.string.home_action_transfer))
-        QuickActionButton(icon = Icons.Default.CreditCard, label = stringResource(R.string.home_action_cards))
+        QuickActionButton(icon = Icons.Default.CreditCard, label = stringResource(R.string.home_action_cards), onClick= {navController.navigate("card")})
         QuickActionButton(icon = Icons.Default.AccountBalanceWallet, label = stringResource(R.string.home_action_payments))
         QuickActionButton(icon = Icons.Default.History, label = stringResource(R.string.home_action_history))
     }
 }
 
 @Composable
-fun QuickActionButton(icon: ImageVector, label: String) {
+fun QuickActionButton(icon: ImageVector, label: String, onClick: () -> Unit = {}) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
             modifier = Modifier
                 .size(56.dp)
+                .clickable {onClick ()}
                 .background(Color.White, RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center
         ) {

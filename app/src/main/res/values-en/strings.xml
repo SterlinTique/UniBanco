@@ -59,6 +59,20 @@
     <string name="home_not_transactions">No transactions</string>
     <string name="home_recent_transactions">Recent transactions</string>
 
+    <!--Temporal_Cards-->
+    <string name="back_title_card">Temporary card</string>
+    <string name="expires_card">Expires</string>
+    <string name="new_card">Generate new card</string>
+    <string name="temporal_card">Generate temporary card</string>
+    <string name="number_card">Number</string>
+    <string name="expiration_card">Expiration</string>
+    <string name="CVV">CVC</string>
+    <string name="type_name">Type</string>
+    <string name="virtual_debit">Virtual debit</string>
+    <string name="use_card">Usage</string>
+    <string name="only_use">Single use</string>
+
+
     <!-- ALERT DIALOGS -->
     <string name="error_login">Invalid data error</string>
     <string name="text_loading">Loading…</string>

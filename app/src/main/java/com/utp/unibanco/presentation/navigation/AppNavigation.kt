@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.utp.unibanco.presentation.card.CardView
 import com.utp.unibanco.presentation.home.HomeView
 import com.utp.unibanco.presentation.login.AuthView
 import com.utp.unibanco.presentation.register.RegisterView
@@ -34,6 +35,10 @@ fun AppNavigation() {
 
         composable("register") {
             RegisterView(navController = navController)
+        }
+
+        composable("card") {
+            CardView(navController = navController)
         }
 
     }
